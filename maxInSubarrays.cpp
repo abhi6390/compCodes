@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// brute
 vector<int> maxSub(const vector<int>& arr, int k) {
     vector<int> res;
     for (int i = 0; i <= arr.size() - k; ++i) {
@@ -12,6 +13,37 @@ vector<int> maxSub(const vector<int>& arr, int k) {
         res.push_back(maxi); // Append the maximum value to the result
     }
     return res;
+}
+
+// optimal
+vector<int> optimalSolution(const vector<int>& arr, int k) {
+    vector<int> ans;
+    // Max heap to store pairs of (element, index)
+    priority_queue<pair<int, int>> heap;
+
+    // Push the first 'k' elements into the heap
+    for (int i = 0; i < k; ++i) {
+        heap.push({arr[i], i});
+    }
+
+    // The maximum element of the first window
+    ans.push_back(heap.top().first);
+
+    // Process the rest of the elements in the array
+    for (int i = k; i < arr.size(); ++i) {
+        // Push the current element along with its index into the heap
+        heap.push({arr[i], i});
+
+        // Remove elements from the heap that are outside the current window
+        while (heap.top().second <= i - k) {
+            heap.pop();
+        }
+
+        // The maximum element of the current window
+        ans.push_back(heap.top().first);
+    }
+
+    return ans;
 }
 
 int main() {
