@@ -1,3 +1,8 @@
+//use case
+    //small array size
+
+//tc O(n^2) both worst best.
+//sc is O(1)
 #include <bits/stdc++.h>
 using namespace std;
 
