@@ -19,9 +19,9 @@ int missing(vector<int>& arr, int n) {
 
 int main() {
     vector<int> arr = {1, 2, 3, 4, 5, 7};
-    int n = 7;  // The maximum number in the expected range
-    
-    int num = missing(arr, n);
+    int n = arr.size();  // The maximum number in the expected range
+    int size=n+1;
+    int num = missing(arr, size);
     cout << "Missing: " << num << endl;
 
     return 0;
